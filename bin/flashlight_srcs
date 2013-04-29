@@ -1,0 +1,53 @@
+#!/usr/bin/perl
+
+sub ALLOWED_EXTENSIONS() { qw/txt cmake scons py pl js html hpp h cpp c def ps vs sh pm xml ek ekd y pl re/ }
+sub ALLOWED_FILENAMES() { qw/Makefile/ }
+
+use strict;
+use File::Find;
+$|=1;
+
+my %aeHash;
+for my $ext (ALLOWED_EXTENSIONS)
+{
+    $aeHash{$ext}++;
+}
+
+sub fileFilter
+{
+    my $path = $File::Find::name;
+    my $allowed = 0;
+
+    if($path =~ /\.([^\\\/]+)$/)
+    {
+        my $ext = lc($1);
+        if($aeHash{$ext})
+        {
+            $allowed = 1;
+        }
+    }
+
+    unless($allowed)
+    {
+        if($path =~ /[\\\/]([^\\\/]+)$/)
+        {
+            my $name = $1;
+            for my $fn (ALLOWED_FILENAMES)
+            {
+                if($name eq $fn)
+                {
+                    $allowed = 1;
+                    last;
+                }
+            }
+        }
+    }
+
+    if($allowed)
+    {
+        print "$path\n";
+    }
+}
+
+my $dir = shift @ARGV;
+find({ wanted => \&fileFilter, no_chdir => 1 }, $dir);

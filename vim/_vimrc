@@ -1,0 +1,4 @@
+" Copy this file into your vim installation and change runtimepath accordingly
+
+set runtimepath^=C:\env\vim\vimfiles
+runtime rc/main.vim
