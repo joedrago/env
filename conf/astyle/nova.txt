@@ -1,5 +1,4 @@
---indent=spaces=4
---convert-tabs
+--indent=tab=4
 --style=allman
 --indent-switches
 --indent-labels
