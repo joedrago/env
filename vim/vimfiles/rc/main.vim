@@ -22,6 +22,7 @@ set nobackup
 set hlsearch
 set incsearch
 nmap <Leader>h :noh<CR>
+nmap <Leader>q :qa!<CR>
 
 " Tab completion awesomeness
 set wildmenu
