@@ -12,4 +12,3 @@
 --keep-one-line-blocks
 --keep-one-line-statements
 --align-pointer=middle
---align-reference=middle

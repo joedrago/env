@@ -87,7 +87,7 @@ set guifont=Liberation_Mono:h10
 
 " astyle settings - TODO: dont hardcode options path
 autocmd BufNewFile,BufRead * setlocal formatprg=
-autocmd BufNewFile,BufRead *.h,*.c,*.cpp execute 'setlocal formatprg=astyle\ --options=' . expand('<sfile>:p:h') . '\..\..\..\conf\astyle\home.txt'
+autocmd BufNewFile,BufRead *.h,*.c,*.cpp execute 'setlocal formatprg=astyle\ --options=' . expand('<sfile>:p:h') . '/../../../conf/astyle/home.txt'
 
 runtime rc/ctrlp.vim
 runtime rc/codetemplates.vim

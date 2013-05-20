@@ -8,9 +8,7 @@
 --min-conditional-indent=0
 --max-instatement-indent=40
 --unpad-paren
---pad-header
 --add-brackets
 --keep-one-line-blocks
 --keep-one-line-statements
---align-pointer=middle
---align-reference=middle
+--align-pointer=name
