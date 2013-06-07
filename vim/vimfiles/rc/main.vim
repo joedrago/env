@@ -91,6 +91,7 @@ filetype on
 " astyle settings - TODO: dont hardcode options path
 autocmd BufNewFile,BufRead * setlocal formatprg=
 autocmd BufNewFile,BufRead *.h,*.c,*.cpp execute 'setlocal formatprg=astyle\ --options=' . expand('<sfile>:p:h') . '/../../../conf/astyle/home.txt'
+autocmd BufNewFile,BufRead *.go execute 'setlocal formatprg=gofmt'
 
 runtime rc/ctrlp.vim
 runtime rc/codetemplates.vim
