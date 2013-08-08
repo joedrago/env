@@ -1,0 +1,14 @@
+{
+	"cmd": ["build_rigel.bat"],
+	"file_regex": "^(..[^:]*)\\(([0-9]+),?([0-9]+)?\\)?:? (.*)$",
+	"working_dir": "${project_path}",
+	"selector": "source.makefile",
+
+	"variants":
+	[
+		{
+			"name": "Clean",
+			"cmd": ["build_rigel.bat", "clean"]
+		}
+	]
+}

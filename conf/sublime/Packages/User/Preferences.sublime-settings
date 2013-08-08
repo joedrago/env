@@ -1,0 +1,14 @@
+{
+	"color_scheme": "Packages/Color Scheme - Default/Sunburst.tmTheme",
+	"font_face": "Liberation Mono",
+	"ignored_packages":
+	[
+	],
+	"vintage_ctrl_keys": false,
+	"vintage_start_in_command_mode": true,
+
+    "draw_white_space": "selection",
+
+    // Set to true to removing trailing white space on save
+    "trim_trailing_white_space_on_save": true
+}
