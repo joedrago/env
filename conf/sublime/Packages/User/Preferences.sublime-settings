@@ -1,14 +1,13 @@
 {
+	"auto_match_enabled": false,
 	"color_scheme": "Packages/Color Scheme - Default/Sunburst.tmTheme",
+	"draw_white_space": "selection",
 	"font_face": "Liberation Mono",
+	"font_size": 11,
 	"ignored_packages":
 	[
+		"Vintage"
 	],
-	"vintage_ctrl_keys": false,
-	"vintage_start_in_command_mode": true,
-
-    "draw_white_space": "selection",
-
-    // Set to true to removing trailing white space on save
-    "trim_trailing_white_space_on_save": true
+	"preview_on_click": false,
+	"trim_trailing_white_space_on_save": true
 }
