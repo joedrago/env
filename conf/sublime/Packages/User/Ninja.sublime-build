@@ -1,0 +1,13 @@
+{
+	"shell_cmd": "ninja",
+	"file_regex": "^(..[^:\n]*):([0-9]+):?([0-9]+)?:? (.*)$",
+	"working_dir": "${project_path:${folder:${file_path}}}/build",
+
+	"variants":
+	[
+		{
+			"name": "Clean",
+			"shell_cmd": "ninja -t clean"
+		}
+	]
+}
