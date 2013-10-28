@@ -3,11 +3,11 @@
 	"color_scheme": "Packages/Color Scheme - Default/Sunburst.tmTheme",
 	"draw_white_space": "selection",
 	"font_face": "Liberation Mono",
-	"font_size": 11,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
 	"preview_on_click": false,
-	"trim_trailing_white_space_on_save": true
+	"trim_trailing_white_space_on_save": true,
+	"dartsdk_path": "/home/jdrago/dart/dart_sdk"
 }
