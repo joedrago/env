@@ -1,9 +1,14 @@
 
 " CtrlP settings
-let g:ctrlp_max_height = 50
+let g:ctrlp_cmd = "CtrlPMixed"
+" let g:ctrlp_max_height = 10
+let g:ctrlp_mruf_max = 10
 let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_match_window = 'bottom,order:ttb,min:10,max:10,results:50'
 let g:ctrlp_working_path_mode = 'wr'
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_use_caching = 1
+let g:ctrlp_cache_dir = $HOME.'/.ctrlp'
 let g:ctrlp_max_files = 0
 let g:ctrlp_user_command = "flashlight_srcs %s"
 let g:ctrlp_root_markers = ['tags']

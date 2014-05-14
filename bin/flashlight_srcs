@@ -43,6 +43,11 @@ sub fileFilter
         }
     }
 
+    if($path =~ /[\\\/]boost[\\\/]/)
+    {
+        $allowed = 0;
+    }
+
     if($allowed)
     {
         print "$path\n";

@@ -34,10 +34,10 @@ set mouse=a
 set clipboard=unnamed
 
 " Color formatting
-colorscheme koehler
+colorscheme sunburst
 syntax enable
-au BufWinEnter * let w:m1=matchadd('WarningMsg', '\t', -1)
-au BufWinEnter * let w:m2=matchadd('WarningMsg', '[\t ]\+$', -1)
+au BufWinEnter * let w:m1=matchadd('Error', '\t', -1)
+au BufWinEnter * let w:m2=matchadd('Error', '[\t ]\+$', -1)
 hi WarningMsg guibg=#222222
 hi Search guibg=DarkGreen
 
@@ -66,6 +66,7 @@ map <f5> :cp<CR>
 map <f6> :cn<CR>
 map <f8> :ccl<CR>
 map <f9> :silent !p4 edit %<CR>
+map <f10> :silent !cmd /c start %<CR>
 map <f12> :bd<cr>
 
 " Display error window on bottom
@@ -85,6 +86,26 @@ set guioptions+=mT
 set guioptions-=mT
 set guifont=Liberation_Mono:h10
 
+let g:buftabs_only_basename = 1
+let g:buftabs_in_statusline = 1
+let g:buftabs_separator = ":"
+let g:buftabs_marker_start = "["
+let g:buftabs_marker_end = "]"
+let g:buftabs_marker_modified = "*"
+
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+set laststatus=2
+set statusline=%f
+set statusline+=%=        " Switch to the right side
+set statusline+=%{buftabs#statusline()}
+set statusline+=\ \ \ \   " wat
+set statusline+=%c        " Current col
+set statusline+=,\        " Separator
+set statusline+=%l        " Current line
+set statusline+=\ \ \ \   " wat
+set statusline+=%P        " Percentage through file
+
 filetype off
 filetype on
 
@@ -94,8 +115,12 @@ autocmd BufNewFile,BufRead *.h,*.c,*.cpp execute 'setlocal formatprg=astyle\ --o
 autocmd BufNewFile,BufRead *.go execute 'setlocal formatprg=gofmt'
 
 runtime rc/ctrlp.vim
+runtime rc/comments.vim
 runtime rc/codetemplates.vim
+runtime rc/nova.vim
 if has('win32')
-    autocmd BufNewFile,BufRead c:/work/nova/*.cpp,c:/work/nova/*.c,c:/work/nova/*.h runtime rc/nova.vim
     autocmd BufNewFile,BufRead c:/work/metroid/*.cpp,c:/work/metroid/*.c,c:/work/metroid/*.h runtime rc/metroid.vim
 endif
+
+let g:session_autosave = 'yes'
+let g:session_autoload = 'yes'
