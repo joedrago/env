@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          autoload/ctrlp/mrufiles.vim
-" Description:   Most Recently Used Files extension
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 autoload/ctrlp/mrufiles.vim
+" Description:	 Most Recently Used Files extension
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 
 " Static variables {{{1

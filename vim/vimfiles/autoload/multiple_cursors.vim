@@ -9,14 +9,14 @@
 " the global vars are replaced by their new value. This is ok since the mapping
 " using '<C-n>' should already have completed in the plugin file.
 for key in [ 'g:multi_cursor_next_key',
-           \ 'g:multi_cursor_prev_key',
-           \ 'g:multi_cursor_skip_key',
-           \ 'g:multi_cursor_quit_key' ]
+	   \ 'g:multi_cursor_prev_key',
+	   \ 'g:multi_cursor_skip_key',
+	   \ 'g:multi_cursor_quit_key' ]
   if exists(key)
     " Translate raw strings like "<C-n>" into key code like "\<C-n>"
     exec 'let temp = '.key
     if temp =~ '^<.*>$'
-      exec 'let '.key.' = "\'.temp.'"' 
+      exec 'let '.key.' = "\'.temp.'"'
     endif
   else
     " If the user didn't define it, initialize it to an empty string so the
@@ -116,34 +116,34 @@ function! multiple_cursors#new(mode)
       call s:cm.reset(0, 0)
       let col = col("'<")
       for line in range(line("'<"), line("'>"))
-        let pos = [line, col]
-        call s:cm.add(pos)
+	let pos = [line, col]
+	call s:cm.add(pos)
       endfor
       " Start in normal mode
       call s:wait_for_user_input('n')
     else
       " Came directly from visual mode
       if s:cm.is_empty()
-        call s:cm.reset(0, 0)
+	call s:cm.reset(0, 0)
 
-        if visualmode() ==# 'V'
-          let left = [line('.'), 1]
-          let right = [line('.'), col('$')-1]
-          if right[1] == 0 " empty line
-            return
-          endif
-          call s:cm.add(right, [left, right])
-        else
-          call s:cm.add(s:pos("'>"), s:region("'<", "'>"))
-        endif
+	if visualmode() ==# 'V'
+	  let left = [line('.'), 1]
+	  let right = [line('.'), col('$')-1]
+	  if right[1] == 0 " empty line
+	    return
+	  endif
+	  call s:cm.add(right, [left, right])
+	else
+	  call s:cm.add(s:pos("'>"), s:region("'<", "'>"))
+	endif
       endif
       let content = s:get_text(s:region("'<", "'>"))
       let next = s:find_next(content)
       if s:cm.add(next[1], next)
-        call s:update_visual_markers(next)
+	call s:update_visual_markers(next)
       else
-        call cursor(s:cm.get_current().position)
-        echohl WarningMsg | echo 'No more matches' | echohl None
+	call cursor(s:cm.get_current().position)
+	echohl WarningMsg | echo 'No more matches' | echohl None
       endif
       call s:wait_for_user_input('v')
     endif
@@ -315,11 +315,11 @@ function! s:CursorManager.new()
   let obj.starting_index = -1
   " We save some user settings when the plugin loads initially
   let obj.saved_settings = {
-        \ 'virtualedit': &virtualedit,
-        \ 'cursorline': &cursorline,
-        \ 'lazyredraw': &lazyredraw,
-        \ 'paste': &paste,
-        \ }
+	\ 'virtualedit': &virtualedit,
+	\ 'cursorline': &cursorline,
+	\ 'lazyredraw': &lazyredraw,
+	\ 'paste': &paste,
+	\ }
   " We save the window view when multicursor mode is entered
   let obj.saved_winview = []
   " Track whether we started multicursor mode from calling multiple_cursors#find
@@ -444,22 +444,22 @@ function! s:CursorManager.update_current() dict
       let cur_line_length = len(getline(cur.line()))
       let new_line_length = len(getline('.'))
       for i in range(self.current_index+1, self.size()-1)
-        let hdelta = 0
-        " Note: some versions of Vim don't like chaining function calls like
-        " a.b().c(). For compatibility reasons, don't do it
-        let c = self.get(i)
-        " If there're other cursors on the same line, we need to adjust their
-        " columns. This needs to happen before we adjust their line!
-        if cur.line() == c.line()
-          if vdelta > 0
-            " Added a line
-            let hdelta = cur_line_length * -1
-          else
-            " Removed a line
-            let hdelta = new_line_length
-          endif
-        endif
-        call c.move(vdelta, hdelta)
+	let hdelta = 0
+	" Note: some versions of Vim don't like chaining function calls like
+	" a.b().c(). For compatibility reasons, don't do it
+	let c = self.get(i)
+	" If there're other cursors on the same line, we need to adjust their
+	" columns. This needs to happen before we adjust their line!
+	if cur.line() == c.line()
+	  if vdelta > 0
+	    " Added a line
+	    let hdelta = cur_line_length * -1
+	  else
+	    " Removed a line
+	    let hdelta = new_line_length
+	  endif
+	endif
+	call c.move(vdelta, hdelta)
       endfor
     endif
   else
@@ -471,17 +471,17 @@ function! s:CursorManager.update_current() dict
       " Update all the cursor's positions that occur after the current cursor on
       " the same line
       if self.current_index != self.size() - 1
-        for i in range(self.current_index+1, self.size()-1)
-          let c = self.get(i)
-          " Only do it for cursors on the same line
-          if cur.line() == c.line()
-            call c.move(0, hdelta)
-          else
-            " Early exit, if we're not on the same line, neither will any cursor
-            " that come after this
-            break
-          endif
-        endfor
+	for i in range(self.current_index+1, self.size()-1)
+	  let c = self.get(i)
+	  " Only do it for cursors on the same line
+	  if cur.line() == c.line()
+	    call c.move(0, hdelta)
+	  else
+	    " Early exit, if we're not on the same line, neither will any cursor
+	    " that come after this
+	    break
+	  endif
+	endfor
       endif
     endif
   endif
@@ -643,7 +643,7 @@ endfunction
 function! s:select_in_visual_mode(region)
   if a:region[0] == a:region[1]
     normal! v
-  else 
+  else
     call cursor(a:region[1])
     normal! m`
     call cursor(a:region[0])
@@ -660,7 +660,7 @@ endfunction
 function! s:update_visual_markers(region)
   if a:region[0] == a:region[1]
     normal! v
-  else 
+  else
     call cursor(a:region[1])
     normal! m`
     call cursor(a:region[0])
@@ -714,7 +714,7 @@ function! s:highlight_region(region)
       let pattern = s1.'\|'.s2
       " More than two lines
       if (s[1][0] - s[0][0] > 1)
-        let pattern = pattern.'\|\%>'.s[0][0].'l\%<'.s[1][0].'l.*\ze.\_$' 
+	let pattern = pattern.'\|\%>'.s[0][0].'l\%<'.s[1][0].'l.*\ze.\_$'
       endif
     endif
   endif
@@ -785,7 +785,7 @@ function! s:process_user_input()
   else
     call s:feedkeys(s:char."\<Plug>(a)")
   endif
-  
+
   " Even when s:char produces invalid input, this method is always called. The
   " 't' here is important
   call feedkeys("\<Plug>(d)", 't')
@@ -811,7 +811,7 @@ function! s:apply_user_input_next(mode)
     let s:to_mode = a:mode
     if s:to_mode ==# 'v'
       if visualmode() ==# 'V'
-        let s:to_mode = 'V'
+	let s:to_mode = 'V'
       endif
     endif
   endif
@@ -880,7 +880,7 @@ function! s:exit()
   if s:from_mode ==# 'n'
     let exit = 1
   elseif (s:from_mode ==# 'v' || s:from_mode ==# 'V') &&
-        \ g:multi_cursor_exit_from_visual_mode
+	\ g:multi_cursor_exit_from_visual_mode
     let exit = 1
   elseif s:from_mode ==# 'i' && g:multi_cursor_exit_from_insert_mode
     stopinsert
@@ -944,9 +944,9 @@ endfunction
 function! s:display_error()
   if s:bad_input > 0
     echohl ErrorMsg |
-          \ echo "Key '".s:char."' cannot be replayed at ".
-          \ s:bad_input." cursor location".(s:bad_input == 1 ? '' : 's') |
-          \ echohl Normal
+	  \ echo "Key '".s:char."' cannot be replayed at ".
+	  \ s:bad_input." cursor location".(s:bad_input == 1 ? '' : 's') |
+	  \ echohl Normal
   endif
   let s:bad_input = 0
 endfunction
@@ -969,13 +969,13 @@ function! s:end_latency_measure()
     if empty(s:latency_debug_file)
       let s:latency_debug_file = tempname()
       exec 'redir >> '.s:latency_debug_file
-        silent! echom "Starting latency debug at ".reltimestr(reltime())
+	silent! echom "Starting latency debug at ".reltimestr(reltime())
       redir END
     endif
 
     if !s:skip_latency_measure
       exec 'redir >> '.s:latency_debug_file
-        silent! echom "Processing '".s:char."' took ".string(str2float(reltimestr(reltime(s:start_time)))*1000).' ms in '.s:cm.size().' cursors. mode = '.s:from_mode
+	silent! echom "Processing '".s:char."' took ".string(str2float(reltimestr(reltime(s:start_time)))*1000).' ms in '.s:cm.size().' cursors. mode = '.s:from_mode
       redir END
     endif
   endif

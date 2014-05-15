@@ -9,7 +9,7 @@
 "   Define a launch function that passes the external command and result handler
 " (like asynchandler#quickfix) to asynccommand#run.
 "   You can use the handlers in autoload/asynchandler.vim or define your own.
-" 
+"
 " Note that cscope functions require these variables:
 "   let g:cscope_database = **full path to cscope database file**
 "   let g:cscope_relative_path = **folder containing cscope database file**
@@ -50,7 +50,7 @@ command! -nargs=1 -complete=tag AsyncCscopeFindX call s:AsyncCscopeFindX(<q-args
 
 
 if (! exists("no_plugin_maps") || ! no_plugin_maps) &&
-            \ (! exists("no_asynccommand_maps") || ! no_asynccommand_maps)
+	    \ (! exists("no_asynccommand_maps") || ! no_asynccommand_maps)
     nmap <unique> <A-S-g> :AsyncCscopeFindSymbol <C-r>=expand('<cword>')<CR><CR>
 endif
 
@@ -77,9 +77,9 @@ function! s:AsyncMake(target)
     let make_cmd = &makeprg ." ". a:target
     let title = 'Make: '
     if a:target == ''
-        let title .= "(default)"
+	let title .= "(default)"
     else
-        let title .= a:target
+	let title .= a:target
     endif
     call asynccommand#run(make_cmd, asynchandler#quickfix(&errorformat, title))
 endfunction
@@ -97,25 +97,25 @@ endfunction
 " f > 7   Find this file
 " i > 8   Find files #including this file
 let s:type_char_to_num = {
-            \ 's': 0,
-            \ 'g': 1,
-            \ 'd': 2,
-            \ 'c': 3,
-            \ 't': 4,
-            \ 'e': 6,
-            \ 'f': 7,
-            \ 'i': 8,
-            \ }
+	    \ 's': 0,
+	    \ 'g': 1,
+	    \ 'd': 2,
+	    \ 'c': 3,
+	    \ 't': 4,
+	    \ 'e': 6,
+	    \ 'f': 7,
+	    \ 'i': 8,
+	    \ }
 let s:num_to_description = {
-            \ 0: 'C symbol',
-            \ 1: 'Definition',
-            \ 2: 'Functions called by this function',
-            \ 3: 'Functions calling this function',
-            \ 4: 'Assignments to',
-            \ 6: 'Egrep pattern',
-            \ 7: 'File',
-            \ 8: '#including this file',
-            \ }
+	    \ 0: 'C symbol',
+	    \ 1: 'Definition',
+	    \ 2: 'Functions called by this function',
+	    \ 3: 'Functions calling this function',
+	    \ 4: 'Assignments to',
+	    \ 6: 'Egrep pattern',
+	    \ 7: 'File',
+	    \ 8: '#including this file',
+	    \ }
 " Wrap AsyncCscopeFind to make it easier to do cscope searches. The user
 " passes everything as one parameter and doesn't have to use numbers.
 function! s:AsyncCscopeFindX(input)
@@ -126,10 +126,10 @@ function! s:AsyncCscopeFindX(input)
     " Convert the type from a char to a number
     " (cscope -l requires a number)
     try
-        let type_num = s:type_char_to_num[ type ]
+	let type_num = s:type_char_to_num[ type ]
     catch /Key not present in Dictionary/
-        echo "Error: " . type . " is an invalid find query. See :cscope help"
-        return
+	echo "Error: " . type . " is an invalid find query. See :cscope help"
+	return
     endtry
 
     let title = s:num_to_description[type_num] . ' ' . query
@@ -145,9 +145,9 @@ function! s:AsyncCscopeFind(type_num, query, title)
     " The output is in the form: "filename location line-number context"
     " Use sed to change it so we can use efm: "filename:line-number location context"
     if !exists('g:cscope_database') || !exists('g:cscope_relative_path')
-        echoerr "You must define both g:cscope_database and g:cscope_relative_path"
-        echoerr "See LocateCscopeFile in tagfilehelpers.vim"
-        return
+	echoerr "You must define both g:cscope_database and g:cscope_relative_path"
+	echoerr "See LocateCscopeFile in tagfilehelpers.vim"
+	return
     endif
     let cscope_cmd = &cscopeprg . " -dl -f " . g:cscope_database . " -P " . g:cscope_relative_path
     " sed command: (filename) (symbol context -- may contain spaces) (line number)

@@ -5,20 +5,20 @@
 " VERSION:  2.3, for Vim 7.0
 " LICENSE:
 " Conque - Vim terminal/console emulator
-" Copyright (C) 2009-2011 Nico Raffo 
+" Copyright (C) 2009-2011 Nico Raffo
 "
 " MIT License
-" 
+"
 " Permission is hereby granted, free of charge, to any person obtaining a copy
 " of this software and associated documentation files (the "Software"), to deal
 " in the Software without restriction, including without limitation the rights
 " to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 " copies of the Software, and to permit persons to whom the Software is
 " furnished to do so, subject to the following conditions:
-" 
+"
 " The above copyright notice and this permission notice shall be included in
 " all copies or substantial portions of the Software.
-" 
+"
 " THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 " IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 " FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,7 +40,7 @@
 
 syn match MySQLTableHead "^ *|.*| *$" nextgroup=MySQLTableDivide contains=MySQLTableBar oneline skipwhite skipnl
 syn match MySQLTableBody "^ *|.*| *$" nextgroup=MySQLTableBody,MySQLTableEnd contains=MySQLTableBar,MySQLNull,MySQLBool,MySQLNumber,MySQLStorageClass oneline skipwhite skipnl
-syn match MySQLTableEnd "^ *+[+=-]\++ *$" oneline 
+syn match MySQLTableEnd "^ *+[+=-]\++ *$" oneline
 syn match MySQLTableDivide "^ *+[+=-]\++ *$" nextgroup=MySQLTableBody oneline skipwhite skipnl
 syn match MySQLTableStart "^ *+[+=-]\++ *$" nextgroup=MySQLTableHead oneline skipwhite skipnl
 syn match MySQLNull " NULL " contained contains=MySQLTableBar
@@ -53,11 +53,11 @@ syn match MySQLTableBar "|" contained
 syn match MySQLNumber "|\?  *\d\+\(\.\d\+\)\?  *|" contained contains=MySQLTableBar
 syn match MySQLQueryStat "^\d\+ rows\? in set.*" oneline
 syn match MySQLPromptLine "^.\?mysql> .*$" contains=MySQLKeyword,MySQLPrompt,MySQLString oneline
-syn match MySQLPromptLine "^    -> .*$" contains=MySQLKeyword,MySQLPrompt,MySQLString oneline
+syn match MySQLPromptLine "^	-> .*$" contains=MySQLKeyword,MySQLPrompt,MySQLString oneline
 syn match MySQLPrompt "^.\?mysql>" contained oneline
 syn match MySQLPrompt "^    ->" contained oneline
 syn case ignore
-syn keyword MySQLKeyword select count max sum avg date show table tables status like as from left right outer inner join contained 
+syn keyword MySQLKeyword select count max sum avg date show table tables status like as from left right outer inner join contained
 syn keyword MySQLKeyword where group by having limit offset order desc asc show contained and interval is null on
 syn case match
 syn region MySQLString start=+'+ end=+'+ skip=+\\'+ contained oneline

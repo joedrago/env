@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          autoload/ctrlp/tag.vim
-" Description:   Tag file extension
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 autoload/ctrlp/tag.vim
+" Description:	 Tag file extension
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 
 " Init {{{1

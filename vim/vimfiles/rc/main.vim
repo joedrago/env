@@ -35,6 +35,9 @@ set clipboard=unnamed
 
 " Color formatting
 colorscheme sunburst
+if has("gui_running")
+    colorscheme koehler
+endif
 syntax enable
 au BufWinEnter * let w:m1=matchadd('Error', '\t', -1)
 au BufWinEnter * let w:m2=matchadd('Error', '[\t ]\+$', -1)
@@ -97,14 +100,14 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 
 set laststatus=2
 set statusline=%f
-set statusline+=%=        " Switch to the right side
+set statusline+=%=	  " Switch to the right side
 set statusline+=%{buftabs#statusline()}
 set statusline+=\ \ \ \   " wat
-set statusline+=%c        " Current col
-set statusline+=,\        " Separator
-set statusline+=%l        " Current line
+set statusline+=%c	  " Current col
+set statusline+=,\	  " Separator
+set statusline+=%l	  " Current line
 set statusline+=\ \ \ \   " wat
-set statusline+=%P        " Percentage through file
+set statusline+=%P	  " Percentage through file
 
 filetype off
 filetype on

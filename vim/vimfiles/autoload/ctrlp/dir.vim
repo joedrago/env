@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          autoload/ctrlp/dir.vim
-" Description:   Directory extension
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 autoload/ctrlp/dir.vim
+" Description:	 Directory extension
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 
 " Init {{{1

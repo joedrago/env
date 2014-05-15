@@ -29,11 +29,11 @@ function! xolox#misc#option#split(value) " {{{1
   " Given a multi-value Vim option like ['runtimepath'] [rtp] this returns a
   " list of strings. For example:
   "
-  "     :echo xolox#misc#option#split(&runtimepath)
-  "     ['/home/peter/Projects/Vim/misc',
-  "      '/home/peter/Projects/Vim/colorscheme-switcher',
-  "      '/home/peter/Projects/Vim/easytags',
-  "      ...]
+  "	:echo xolox#misc#option#split(&runtimepath)
+  "	['/home/peter/Projects/Vim/misc',
+  "	 '/home/peter/Projects/Vim/colorscheme-switcher',
+  "	 '/home/peter/Projects/Vim/easytags',
+  "	 ...]
   "
   " [rtp]: http://vimdoc.sourceforge.net/htmldoc/options.html#'runtimepath'
   let values = split(a:value, '[^\\]\zs,')

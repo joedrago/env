@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          autoload/ctrlp/utils.vim
-" Description:   Utilities
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 autoload/ctrlp/utils.vim
+" Description:	 Utilities
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 
 " Static variables {{{1

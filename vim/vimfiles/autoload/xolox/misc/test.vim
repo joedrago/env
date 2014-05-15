@@ -30,10 +30,10 @@ function! xolox#misc#test#summarize() " {{{1
   " Print a summary of test results, to be interpreted interactively.
   call s:delimit_output()
   call xolox#misc#timer#force("Took %s to run %s: %s passed, %s failed.",
-        \ s:tests_started_at,
-        \ xolox#misc#format#pluralize(s:num_executed, 'test', 'tests'),
-        \ xolox#misc#format#pluralize(s:num_passed, 'assertion', 'assertions'),
-        \ xolox#misc#format#pluralize(s:num_failed, 'assertion', 'assertions'))
+	\ s:tests_started_at,
+	\ xolox#misc#format#pluralize(s:num_executed, 'test', 'tests'),
+	\ xolox#misc#format#pluralize(s:num_passed, 'assertion', 'assertions'),
+	\ xolox#misc#format#pluralize(s:num_failed, 'assertion', 'assertions'))
 endfunction
 
 function! xolox#misc#test#wrap(function) " {{{1
@@ -84,8 +84,8 @@ endfunction
 function! s:print_feedback() " {{{1
   " Let the user know the status of the test suite.
   call xolox#misc#msg#info("Test status: %s passed, %s failed ..",
-        \ xolox#misc#format#pluralize(s:num_passed, 'assertion', 'assertions'),
-        \ xolox#misc#format#pluralize(s:num_failed, 'assertion', 'assertions'))
+	\ xolox#misc#format#pluralize(s:num_passed, 'assertion', 'assertions'),
+	\ xolox#misc#format#pluralize(s:num_failed, 'assertion', 'assertions'))
 endfunction
 
 function! xolox#misc#test#assert_true(expr) " {{{1

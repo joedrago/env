@@ -17,7 +17,7 @@ function! xolox#misc#open#file(location, ...) " {{{1
   " this fails to find a file association, you can pass one or more external
   " commands to try as additional arguments. For example:
   "
-  "     :call xolox#misc#open#file('/path/to/my/file', 'firefox', 'google-chrome')
+  "	:call xolox#misc#open#file('/path/to/my/file', 'firefox', 'google-chrome')
   "
   " This generally shouldn't be necessary but it might come in handy now and
   " then.
@@ -37,10 +37,10 @@ function! xolox#misc#open#file(location, ...) " {{{1
   else
     for handler in s:handlers + a:000
       if executable(handler)
-        call xolox#misc#msg#debug("vim-misc %s: Using '%s' to open '%s'.", g:xolox#misc#version, handler, a:location)
-        let cmd = shellescape(handler) . ' ' . shellescape(a:location) . ' 2>&1'
-        call s:handle_error(cmd, system(cmd))
-        return
+	call xolox#misc#msg#debug("vim-misc %s: Using '%s' to open '%s'.", g:xolox#misc#version, handler, a:location)
+	let cmd = shellescape(handler) . ' ' . shellescape(a:location) . ' 2>&1'
+	call s:handle_error(cmd, system(cmd))
+	return
       endif
     endfor
   endif
@@ -75,10 +75,10 @@ function! xolox#misc#open#url(url) " {{{1
     for browser in ['lynx', 'links', 'w3m']
       call xolox#misc#msg#debug("vim-misc %s: Checking whether %s command line web browser is installed ..", g:xolox#misc#version, string(browser))
       if executable(browser)
-        call xolox#misc#msg#debug("vim-misc %s: Found %s, using it to open %s ..", g:xolox#misc#version, string(browser), string(url))
-        execute '!' . browser fnameescape(url)
-        call s:handle_error(browser . ' ' . url, '')
-        return
+	call xolox#misc#msg#debug("vim-misc %s: Found %s, using it to open %s ..", g:xolox#misc#version, string(browser), string(url))
+	execute '!' . browser fnameescape(url)
+	call s:handle_error(browser . ' ' . url, '')
+	return
       endif
     endfor
   endif

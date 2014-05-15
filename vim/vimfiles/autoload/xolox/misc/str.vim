@@ -50,9 +50,9 @@ function! xolox#misc#str#dedent(text) " {{{1
     if line =~ '\S'
       let indent = matchstr(line, '^\s*')
       if !exists('common_indent')
-        let common_indent = indent
+	let common_indent = indent
       elseif len(indent) < len(common_indent)
-        let common_indent = indent
+	let common_indent = indent
       endif
     endif
   endfor

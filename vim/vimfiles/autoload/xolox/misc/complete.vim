@@ -9,7 +9,7 @@ function! xolox#misc#complete#keywords(arglead, cmdline, cursorpos)
   " Vim commands based on the contents of the current buffer. Here's an
   " example of how you would use it:
   "
-  "     :command -nargs=* -complete=customlist,xolox#misc#complete#keywords MyCmd call s:MyCmd(<f-args>)
+  "	:command -nargs=* -complete=customlist,xolox#misc#complete#keywords MyCmd call s:MyCmd(<f-args>)
   let words = {}
   for line in getline(1, '$')
     for word in split(line, '\W\+')

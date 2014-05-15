@@ -1,10 +1,10 @@
 " =============================================================================
-" File:          autoload/ctrlp/buffertag.vim
-" Description:   Buffer Tag extension
-" Maintainer:    Kien Nguyen <github.com/kien>
-" Credits:       Much of the code was taken from tagbar.vim by Jan Larres, plus
-"                a few lines from taglist.vim by Yegappan Lakshmanan and from
-"                buffertag.vim by Takeshi Nishida.
+" File: 	 autoload/ctrlp/buffertag.vim
+" Description:	 Buffer Tag extension
+" Maintainer:	 Kien Nguyen <github.com/kien>
+" Credits:	 Much of the code was taken from tagbar.vim by Jan Larres, plus
+"		 a few lines from taglist.vim by Yegappan Lakshmanan and from
+"		 buffertag.vim by Takeshi Nishida.
 " =============================================================================
 
 " Init {{{1
@@ -48,9 +48,9 @@ let s:types = {
 	\ 'aspvbs' : '%sasp%sasp%sfsv',
 	\ 'awk'    : '%sawk%sawk%sf',
 	\ 'beta'   : '%sbeta%sbeta%sfsv',
-	\ 'c'      : '%sc%sc%sdgsutvf',
+	\ 'c'	   : '%sc%sc%sdgsutvf',
 	\ 'cpp'    : '%sc++%sc++%snvdtcgsuf',
-	\ 'cs'     : '%sc#%sc#%sdtncEgsipm',
+	\ 'cs'	   : '%sc#%sc#%sdtncEgsipm',
 	\ 'cobol'  : '%scobol%scobol%sdfgpPs',
 	\ 'eiffel' : '%seiffel%seiffel%scf',
 	\ 'erlang' : '%serlang%serlang%sdrmf',
@@ -70,7 +70,7 @@ let s:types = {
 	\ 'rexx'   : '%srexx%srexx%ss',
 	\ 'ruby'   : '%sruby%sruby%scfFm',
 	\ 'scheme' : '%sscheme%sscheme%ssf',
-	\ 'sh'     : '%ssh%ssh%sf',
+	\ 'sh'	   : '%ssh%ssh%sf',
 	\ 'csh'    : '%ssh%ssh%sf',
 	\ 'zsh'    : '%ssh%ssh%sf',
 	\ 'slang'  : '%sslang%sslang%snf',

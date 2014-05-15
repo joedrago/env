@@ -67,26 +67,26 @@ function! s:show_message(hlgroup, args) " {{{1
     try
       " Temporarily disable Vim's |hit-enter| prompt and mode display.
       if !exists('s:more_save')
-        let s:more_save = &more
-        let s:ruler_save = &ruler
-        let s:smd_save = &showmode
+	let s:more_save = &more
+	let s:ruler_save = &ruler
+	let s:smd_save = &showmode
       endif
       set nomore noshowmode
       if winnr('$') == 1 | set noruler | endif
       augroup PluginXoloxHideMode
-        autocmd! CursorHold,CursorHoldI * call s:clear_message()
+	autocmd! CursorHold,CursorHoldI * call s:clear_message()
       augroup END
       execute 'echohl' a:hlgroup
       " Redraw to avoid |hit-enter| prompt.
       redraw
       for line in split(message, "\n")
-        echomsg line
+	echomsg line
       endfor
       if g:xolox_message_buffer > 0
-        call add(g:xolox_messages, message)
-        if len(g:xolox_messages) > g:xolox_message_buffer
-          call remove(g:xolox_messages, 0)
-        endif
+	call add(g:xolox_messages, message)
+	if len(g:xolox_messages) > g:xolox_message_buffer
+	  call remove(g:xolox_messages, 0)
+	endif
       endif
     finally
       " Always clear message highlighting, even when interrupted by Ctrl-C.

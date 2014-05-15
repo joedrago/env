@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          plugin/ctrlp.vim
-" Description:   Fuzzy file, buffer, mru, tag, etc finder.
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 plugin/ctrlp.vim
+" Description:	 Fuzzy file, buffer, mru, tag, etc finder.
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 " GetLatestVimScripts: 3736 1 :AutoInstall: ctrlp.zip
 
@@ -17,10 +17,10 @@ let [g:ctrlp_lines, g:ctrlp_allfiles, g:ctrlp_alltags, g:ctrlp_alldirs,
 if !exists('g:ctrlp_map') | let g:ctrlp_map = '<c-p>' | en
 if !exists('g:ctrlp_cmd') | let g:ctrlp_cmd = 'CtrlP' | en
 
-com! -n=? -com=dir CtrlP         cal ctrlp#init(0, { 'dir': <q-args> })
+com! -n=? -com=dir CtrlP	 cal ctrlp#init(0, { 'dir': <q-args> })
 com! -n=? -com=dir CtrlPMRUFiles cal ctrlp#init(2, { 'dir': <q-args> })
 
-com! -bar CtrlPBuffer   cal ctrlp#init(1)
+com! -bar CtrlPBuffer	cal ctrlp#init(1)
 com! -n=? CtrlPLastMode cal ctrlp#init(-1, { 'args': <q-args> })
 
 com! -bar CtrlPClearCache     cal ctrlp#clr()
@@ -39,7 +39,7 @@ en
 
 cal ctrlp#mrufiles#init()
 
-com! -bar CtrlPTag      cal ctrlp#init(ctrlp#tag#id())
+com! -bar CtrlPTag	cal ctrlp#init(ctrlp#tag#id())
 com! -bar CtrlPQuickfix cal ctrlp#init(ctrlp#quickfix#id())
 
 com! -n=? -com=dir CtrlPDir
@@ -49,8 +49,8 @@ com! -n=? -com=buffer CtrlPBufTag
 	\ cal ctrlp#init(ctrlp#buffertag#cmd(0, <q-args>))
 
 com! -bar CtrlPBufTagAll cal ctrlp#init(ctrlp#buffertag#cmd(1))
-com! -bar CtrlPRTS       cal ctrlp#init(ctrlp#rtscript#id())
-com! -bar CtrlPUndo      cal ctrlp#init(ctrlp#undo#id())
+com! -bar CtrlPRTS	 cal ctrlp#init(ctrlp#rtscript#id())
+com! -bar CtrlPUndo	 cal ctrlp#init(ctrlp#undo#id())
 
 com! -n=? -com=buffer CtrlPLine
 	\ cal ctrlp#init(ctrlp#line#cmd(1, <q-args>))
@@ -59,7 +59,7 @@ com! -n=? -com=buffer CtrlPChange
 	\ cal ctrlp#init(ctrlp#changes#cmd(0, <q-args>))
 
 com! -bar CtrlPChangeAll   cal ctrlp#init(ctrlp#changes#cmd(1))
-com! -bar CtrlPMixed       cal ctrlp#init(ctrlp#mixed#id())
+com! -bar CtrlPMixed	   cal ctrlp#init(ctrlp#mixed#id())
 com! -bar CtrlPBookmarkDir cal ctrlp#init(ctrlp#bookmarkdir#id())
 
 com! -n=? -com=dir CtrlPBookmarkDirAdd

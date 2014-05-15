@@ -13,11 +13,11 @@ function! xolox#misc#path#which(...) " {{{1
   " a list with the absolute pathnames of all found programs. Here's an
   " example:
   "
-  "     :echo xolox#misc#path#which('gvim', 'vim')
-  "     ['/usr/local/bin/gvim',
-  "      '/usr/bin/gvim',
-  "      '/usr/local/bin/vim',
-  "      '/usr/bin/vim']
+  "	:echo xolox#misc#path#which('gvim', 'vim')
+  "	['/usr/local/bin/gvim',
+  "	 '/usr/bin/gvim',
+  "	 '/usr/local/bin/vim',
+  "	 '/usr/bin/vim']
   let extensions = s:windows_compatible ? split($PATHEXT, ';') : ['']
   let matches = []
   let checked = {}
@@ -25,22 +25,22 @@ function! xolox#misc#path#which(...) " {{{1
     for directory in split($PATH, s:windows_compatible ? ';' : ':')
       let directory = xolox#misc#path#absolute(directory)
       if isdirectory(directory)
-        let found = 0
-        for extension in extensions
-          let path = xolox#misc#path#merge(directory, program . extension)
-          if executable(path)
-            call add(matches, path)
-            let found = 1
-          endif
-        endfor
-        if s:windows_compatible && ! found
-          " Maybe the extension is already contained in program; try without
-          " $PATHEXT.
-          let path = xolox#misc#path#merge(directory, program)
-          if executable(path)
-            call add(matches, path)
-          endif
-        endif
+	let found = 0
+	for extension in extensions
+	  let path = xolox#misc#path#merge(directory, program . extension)
+	  if executable(path)
+	    call add(matches, path)
+	    let found = 1
+	  endif
+	endfor
+	if s:windows_compatible && ! found
+	  " Maybe the extension is already contained in program; try without
+	  " $PATHEXT.
+	  let path = xolox#misc#path#merge(directory, program)
+	  if executable(path)
+	    call add(matches, path)
+	  endif
+	endif
       endif
     endfor
   endfor
@@ -69,11 +69,11 @@ function! xolox#misc#path#split(path) " {{{1
   if type(a:path) == type('')
     if s:windows_compatible
       if a:path =~ '^[\/][\/]'
-        " UNC pathname.
-        return split(a:path, '\%>2c[\/]\+')
+	" UNC pathname.
+	return split(a:path, '\%>2c[\/]\+')
       else
-        " If it's not a UNC path we can simply split on slashes & backslashes.
-        return split(a:path, '[\/]\+')
+	" If it's not a UNC path we can simply split on slashes & backslashes.
+	return split(a:path, '[\/]\+')
       endif
     else
       " Everything else is treated as UNIX.
@@ -179,10 +179,10 @@ function! xolox#misc#path#commonprefix(paths) " {{{1
     let index = 0
     for segment in xolox#misc#path#split(path)
       if len(common) <= index
-        break
+	break
       elseif common[index] != segment
-        call remove(common, index, -1)
-        break
+	call remove(common, index, -1)
+	break
       endif
       let index += 1
     endfor

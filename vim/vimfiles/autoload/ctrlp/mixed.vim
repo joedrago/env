@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          autoload/ctrlp/mixed.vim
-" Description:   Mixing Files + MRU + Buffers
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 autoload/ctrlp/mixed.vim
+" Description:	 Mixing Files + MRU + Buffers
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 
 " Init {{{1

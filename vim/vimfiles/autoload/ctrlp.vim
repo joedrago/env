@@ -1,8 +1,8 @@
 " =============================================================================
-" File:          autoload/ctrlp.vim
-" Description:   Fuzzy file, buffer, mru, tag, etc finder.
-" Author:        Kien Nguyen <github.com/kien>
-" Version:       1.79
+" File: 	 autoload/ctrlp.vim
+" Description:	 Fuzzy file, buffer, mru, tag, etc finder.
+" Author:	 Kien Nguyen <github.com/kien>
+" Version:	 1.79
 " =============================================================================
 
 " ** Static variables {{{1
@@ -53,52 +53,52 @@ endf
 " Script local vars {{{2
 let [s:pref, s:bpref, s:opts, s:new_opts, s:lc_opts] =
 	\ ['g:ctrlp_', 'b:ctrlp_', {
-	\ 'abbrev':                ['s:abbrev', {}],
-	\ 'arg_map':               ['s:argmap', 0],
-	\ 'buffer_func':           ['s:buffunc', {}],
-	\ 'by_filename':           ['s:byfname', 0],
-	\ 'custom_ignore':         ['s:usrign', s:ignore()],
-	\ 'default_input':         ['s:deftxt', 0],
-	\ 'dont_split':            ['s:nosplit', 'netrw'],
-	\ 'dotfiles':              ['s:showhidden', 0],
-	\ 'extensions':            ['s:extensions', []],
-	\ 'follow_symlinks':       ['s:folsym', 0],
-	\ 'highlight_match':       ['s:mathi', [1, 'CtrlPMatch']],
-	\ 'jump_to_buffer':        ['s:jmptobuf', 'Et'],
-	\ 'key_loop':              ['s:keyloop', 0],
-	\ 'lazy_update':           ['s:lazy', 0],
-	\ 'match_func':            ['s:matcher', {}],
-	\ 'match_window':          ['s:mw', ''],
+	\ 'abbrev':		   ['s:abbrev', {}],
+	\ 'arg_map':		   ['s:argmap', 0],
+	\ 'buffer_func':	   ['s:buffunc', {}],
+	\ 'by_filename':	   ['s:byfname', 0],
+	\ 'custom_ignore':	   ['s:usrign', s:ignore()],
+	\ 'default_input':	   ['s:deftxt', 0],
+	\ 'dont_split': 	   ['s:nosplit', 'netrw'],
+	\ 'dotfiles':		   ['s:showhidden', 0],
+	\ 'extensions': 	   ['s:extensions', []],
+	\ 'follow_symlinks':	   ['s:folsym', 0],
+	\ 'highlight_match':	   ['s:mathi', [1, 'CtrlPMatch']],
+	\ 'jump_to_buffer':	   ['s:jmptobuf', 'Et'],
+	\ 'key_loop':		   ['s:keyloop', 0],
+	\ 'lazy_update':	   ['s:lazy', 0],
+	\ 'match_func': 	   ['s:matcher', {}],
+	\ 'match_window':	   ['s:mw', ''],
 	\ 'match_window_bottom':   ['s:mwbottom', 1],
 	\ 'match_window_reversed': ['s:mwreverse', 1],
-	\ 'max_depth':             ['s:maxdepth', 40],
-	\ 'max_files':             ['s:maxfiles', 10000],
-	\ 'max_height':            ['s:mxheight', 10],
-	\ 'max_history':           ['s:maxhst', exists('+hi') ? &hi : 20],
+	\ 'max_depth':		   ['s:maxdepth', 40],
+	\ 'max_files':		   ['s:maxfiles', 10000],
+	\ 'max_height': 	   ['s:mxheight', 10],
+	\ 'max_history':	   ['s:maxhst', exists('+hi') ? &hi : 20],
 	\ 'mruf_default_order':    ['s:mrudef', 0],
-	\ 'open_func':             ['s:openfunc', {}],
-	\ 'open_multi':            ['s:opmul', '1v'],
-	\ 'open_new_file':         ['s:newfop', 'v'],
-	\ 'prompt_mappings':       ['s:urprtmaps', 0],
-	\ 'regexp_search':         ['s:regexp', 0],
-	\ 'root_markers':          ['s:rmarkers', []],
-	\ 'split_window':          ['s:splitwin', 0],
-	\ 'status_func':           ['s:status', {}],
-	\ 'tabpage_position':      ['s:tabpage', 'ac'],
-	\ 'use_caching':           ['s:caching', 1],
-	\ 'use_migemo':            ['s:migemo', 0],
-	\ 'user_command':          ['s:usrcmd', ''],
-	\ 'working_path_mode':     ['s:pathmode', 'ra'],
+	\ 'open_func':		   ['s:openfunc', {}],
+	\ 'open_multi': 	   ['s:opmul', '1v'],
+	\ 'open_new_file':	   ['s:newfop', 'v'],
+	\ 'prompt_mappings':	   ['s:urprtmaps', 0],
+	\ 'regexp_search':	   ['s:regexp', 0],
+	\ 'root_markers':	   ['s:rmarkers', []],
+	\ 'split_window':	   ['s:splitwin', 0],
+	\ 'status_func':	   ['s:status', {}],
+	\ 'tabpage_position':	   ['s:tabpage', 'ac'],
+	\ 'use_caching':	   ['s:caching', 1],
+	\ 'use_migemo': 	   ['s:migemo', 0],
+	\ 'user_command':	   ['s:usrcmd', ''],
+	\ 'working_path_mode':	   ['s:pathmode', 'ra'],
 	\ }, {
 	\ 'open_multiple_files':   's:opmul',
-	\ 'regexp':                's:regexp',
-	\ 'reuse_window':          's:nosplit',
-	\ 'show_hidden':           's:showhidden',
-	\ 'switch_buffer':         's:jmptobuf',
+	\ 'regexp':		   's:regexp',
+	\ 'reuse_window':	   's:nosplit',
+	\ 'show_hidden':	   's:showhidden',
+	\ 'switch_buffer':	   's:jmptobuf',
 	\ }, {
-	\ 'root_markers':          's:rmarkers',
-	\ 'user_command':          's:usrcmd',
-	\ 'working_path_mode':     's:pathmode',
+	\ 'root_markers':	   's:rmarkers',
+	\ 'user_command':	   's:usrcmd',
+	\ 'working_path_mode':	   's:pathmode',
 	\ }]
 
 " Global options
@@ -108,40 +108,40 @@ let s:glbs = { 'magic': 1, 'to': 1, 'tm': 0, 'sb': 1, 'hls': 0, 'im': 0,
 
 " Keymaps
 let [s:lcmap, s:prtmaps] = ['nn <buffer> <silent>', {
-	\ 'PrtBS()':              ['<bs>', '<c-]>'],
-	\ 'PrtDelete()':          ['<del>'],
-	\ 'PrtDeleteWord()':      ['<c-w>'],
-	\ 'PrtClear()':           ['<c-u>'],
+	\ 'PrtBS()':		  ['<bs>', '<c-]>'],
+	\ 'PrtDelete()':	  ['<del>'],
+	\ 'PrtDeleteWord()':	  ['<c-w>'],
+	\ 'PrtClear()': 	  ['<c-u>'],
 	\ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
 	\ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
 	\ 'PrtSelectMove("t")':   ['<Home>', '<kHome>'],
 	\ 'PrtSelectMove("b")':   ['<End>', '<kEnd>'],
 	\ 'PrtSelectMove("u")':   ['<PageUp>', '<kPageUp>'],
 	\ 'PrtSelectMove("d")':   ['<PageDown>', '<kPageDown>'],
-	\ 'PrtHistory(-1)':       ['<c-n>'],
-	\ 'PrtHistory(1)':        ['<c-p>'],
+	\ 'PrtHistory(-1)':	  ['<c-n>'],
+	\ 'PrtHistory(1)':	  ['<c-p>'],
 	\ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
 	\ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
 	\ 'AcceptSelection("t")': ['<c-t>'],
 	\ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
-	\ 'ToggleFocus()':        ['<s-tab>'],
-	\ 'ToggleRegex()':        ['<c-r>'],
-	\ 'ToggleByFname()':      ['<c-d>'],
-	\ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
-	\ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
-	\ 'PrtExpandDir()':       ['<tab>'],
-	\ 'PrtInsert("c")':       ['<MiddleMouse>', '<insert>'],
-	\ 'PrtInsert()':          ['<c-\>'],
-	\ 'PrtCurStart()':        ['<c-a>'],
-	\ 'PrtCurEnd()':          ['<c-e>'],
-	\ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
-	\ 'PrtCurRight()':        ['<c-l>', '<right>'],
-	\ 'PrtClearCache()':      ['<F5>'],
-	\ 'PrtDeleteEnt()':       ['<F7>'],
-	\ 'CreateNewFile()':      ['<c-y>'],
-	\ 'MarkToOpen()':         ['<c-z>'],
-	\ 'OpenMulti()':          ['<c-o>'],
-	\ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
+	\ 'ToggleFocus()':	  ['<s-tab>'],
+	\ 'ToggleRegex()':	  ['<c-r>'],
+	\ 'ToggleByFname()':	  ['<c-d>'],
+	\ 'ToggleType(1)':	  ['<c-f>', '<c-up>'],
+	\ 'ToggleType(-1)':	  ['<c-b>', '<c-down>'],
+	\ 'PrtExpandDir()':	  ['<tab>'],
+	\ 'PrtInsert("c")':	  ['<MiddleMouse>', '<insert>'],
+	\ 'PrtInsert()':	  ['<c-\>'],
+	\ 'PrtCurStart()':	  ['<c-a>'],
+	\ 'PrtCurEnd()':	  ['<c-e>'],
+	\ 'PrtCurLeft()':	  ['<c-h>', '<left>', '<c-^>'],
+	\ 'PrtCurRight()':	  ['<c-l>', '<right>'],
+	\ 'PrtClearCache()':	  ['<F5>'],
+	\ 'PrtDeleteEnt()':	  ['<F7>'],
+	\ 'CreateNewFile()':	  ['<c-y>'],
+	\ 'MarkToOpen()':	  ['<c-z>'],
+	\ 'OpenMulti()':	  ['<c-o>'],
+	\ 'PrtExit()':		  ['<esc>', '<c-c>', '<c-g>'],
 	\ }]
 
 if !has('gui_running')
@@ -1313,9 +1313,9 @@ endf
 
 fu! s:matchlens(str, pat, ...)
 	if empty(a:pat) || index(['^', '$'], a:pat) >= 0 | retu {} | en
-	let st   = a:0 ? a:1 : 0
+	let st	 = a:0 ? a:1 : 0
 	let lens = a:0 >= 2 ? a:2 : {}
-	let nr   = a:0 >= 3 ? a:3 : 0
+	let nr	 = a:0 >= 3 ? a:3 : 0
 	if nr > 20 | retu {} | en
 	if match(a:str, a:pat, st) >= 0
 		let [mst, mnd] = [matchstr(a:str, a:pat, st), matchend(a:str, a:pat, st)]
@@ -1404,7 +1404,7 @@ fu! ctrlp#statusline()
 		let item    = '%#CtrlPMode1# '.s:ctype.' %*'
 		let focus   = '%#CtrlPMode2# '.focus.' %*'
 		let byfname = '%#CtrlPMode1# '.byfname.' %*'
-		let regex   = s:regexp  ? '%#CtrlPMode2# regex %*' : ''
+		let regex   = s:regexp	? '%#CtrlPMode2# regex %*' : ''
 		let slider  = ' <'.prv.'>={'.item.'}=<'.nxt.'>'
 		let dir     = ' %=%<%#CtrlPMode2# %{getcwd()} %*'
 		let &l:stl  = focus.byfname.regex.slider.marked.dir

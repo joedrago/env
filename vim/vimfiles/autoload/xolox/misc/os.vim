@@ -20,7 +20,7 @@ function! xolox#misc#os#is_mac() " {{{1
       " Otherwise we check the output of `uname' to avoid false negatives.
       let result = xolox#misc#os#exec({'command': 'uname', 'check': 0})
       if result['exit_code'] == 0 && get(result['stdout'], 0, '') == 'Darwin'
-        let s:is_mac = 1
+	let s:is_mac = 1
       endif
     endif
   endif
@@ -133,9 +133,9 @@ function! xolox#misc#os#exec(options) " {{{1
     if has_key(a:options, 'stdin') && use_dll
       let tempin = tempname()
       if type(a:options['stdin']) == type([])
-        let lines = a:options['stdin']
+	let lines = a:options['stdin']
       else
-        let lines = split(a:options['stdin'], "\n")
+	let lines = split(a:options['stdin'], "\n")
       endif
       call writefile(lines, tempin)
       let cmd .= ' < ' . xolox#misc#escape#shell(tempin)
@@ -157,13 +157,13 @@ function! xolox#misc#os#exec(options) " {{{1
 
       " Enable asynchronous mode (very platform specific).
       if async
-        if is_win
-          let cmd = printf('start /b %s', cmd)
-        elseif has('unix')
-          let cmd = printf('(%s) &', cmd)
-        else
-          call xolox#misc#msg#warn("vim-misc %s: I don't know how to execute the command %s asynchronously on your platform! Falling back to synchronous mode...", g:xolox#misc#version, cmd)
-        endif
+	if is_win
+	  let cmd = printf('start /b %s', cmd)
+	elseif has('unix')
+	  let cmd = printf('(%s) &', cmd)
+	else
+	  call xolox#misc#msg#warn("vim-misc %s: I don't know how to execute the command %s asynchronously on your platform! Falling back to synchronous mode...", g:xolox#misc#version, cmd)
+	endif
       endif
 
       " On UNIX we explicitly execute the command line using 'sh' instead of
@@ -171,26 +171,26 @@ function! xolox#misc#os#exec(options) " {{{1
       " error can be redirected separately, but (t)csh does not support this
       " (and it might be the default shell).
       if has('unix')
-        call xolox#misc#msg#debug("vim-misc %s: Generated shell expression: %s", g:xolox#misc#version, cmd)
-        let cmd = printf('sh -c %s', xolox#misc#escape#shell(cmd))
+	call xolox#misc#msg#debug("vim-misc %s: Generated shell expression: %s", g:xolox#misc#version, cmd)
+	let cmd = printf('sh -c %s', xolox#misc#escape#shell(cmd))
       endif
 
       " Let the user know what's happening (in case they're interested).
       if async && is_win
-        call xolox#misc#msg#debug("vim-misc %s: Executing external command using !start command: %s", g:xolox#misc#version, cmd)
-        silent execute '!' . cmd
+	call xolox#misc#msg#debug("vim-misc %s: Executing external command using !start command: %s", g:xolox#misc#version, cmd)
+	silent execute '!' . cmd
       else
-        call xolox#misc#msg#debug("vim-misc %s: Executing external command using system() function: %s", g:xolox#misc#version, cmd)
-        let arguments = [cmd]
-        if has_key(a:options, 'stdin')
-          if type(a:options['stdin']) == type([])
-            call add(arguments, join(a:options['stdin'], "\n"))
-          else
-            call add(arguments, a:options['stdin'])
-          endif
-        endif
-        let stdout = call('system', arguments)
-        let exit_code = v:shell_error
+	call xolox#misc#msg#debug("vim-misc %s: Executing external command using system() function: %s", g:xolox#misc#version, cmd)
+	let arguments = [cmd]
+	if has_key(a:options, 'stdin')
+	  if type(a:options['stdin']) == type([])
+	    call add(arguments, join(a:options['stdin'], "\n"))
+	  else
+	    call add(arguments, a:options['stdin'])
+	  endif
+	endif
+	let stdout = call('system', arguments)
+	let exit_code = v:shell_error
       endif
 
     endif
@@ -201,35 +201,35 @@ function! xolox#misc#os#exec(options) " {{{1
       let result['exit_code'] = exit_code
       " Get the standard output of the command.
       if redirect_output
-        let result['stdout'] = s:readfile(tempout, 'standard output', a:options['command'])
+	let result['stdout'] = s:readfile(tempout, 'standard output', a:options['command'])
       elseif exists('stdout')
-        let result['stdout'] = split(stdout, "\n")
+	let result['stdout'] = split(stdout, "\n")
       else
-        let result['stdout'] = []
+	let result['stdout'] = []
       endif
       " Get the standard error of the command.
       if exists('temperr')
-        let result['stderr'] = s:readfile(temperr, 'standard error', a:options['command'])
+	let result['stderr'] = s:readfile(temperr, 'standard error', a:options['command'])
       else
-        let result['stderr'] = []
+	let result['stderr'] = []
       endif
       " If we just executed a synchronous command and the caller didn't
       " specifically ask us *not* to check the exit code of the external
       " command, we'll do so now. The idea here is that it should be easy
       " to 'do the right thing'.
       if get(a:options, 'check', 1) && exit_code != 0
-        " Prepare an error message with enough details so the user can investigate.
-        let msg = printf("vim-misc %s: External command failed with exit code %d!", g:xolox#misc#version, result['exit_code'])
-        let msg .= printf("\nCommand line: %s", result['command'])
-        " If the external command reported an error, we'll include it in our message.
-        if !empty(result['stderr'])
-          " This is where we would normally expect to find an error message.
-          let msg .= printf("\nOutput on standard output stream:\n%s", join(result['stderr'], "\n"))
-        elseif !empty(result['stdout'])
-          " Exuberant Ctags on Windows XP reports errors on standard output :-x.
-          let msg .= printf("\nOutput on standard error stream:\n%s", join(result['stdout'], "\n"))
-        endif
-        throw msg
+	" Prepare an error message with enough details so the user can investigate.
+	let msg = printf("vim-misc %s: External command failed with exit code %d!", g:xolox#misc#version, result['exit_code'])
+	let msg .= printf("\nCommand line: %s", result['command'])
+	" If the external command reported an error, we'll include it in our message.
+	if !empty(result['stderr'])
+	  " This is where we would normally expect to find an error message.
+	  let msg .= printf("\nOutput on standard output stream:\n%s", join(result['stderr'], "\n"))
+	elseif !empty(result['stdout'])
+	  " Exuberant Ctags on Windows XP reports errors on standard output :-x.
+	  let msg .= printf("\nOutput on standard error stream:\n%s", join(result['stdout'], "\n"))
+	endif
+	throw msg
       endif
     endif
     return result
@@ -238,7 +238,7 @@ function! xolox#misc#os#exec(options) " {{{1
     " Cleanup any temporary files we created.
     for name in ['tempin', 'tempout', 'temperr']
       if exists(name)
-        call delete({name})
+	call delete({name})
       endif
     endfor
   endtry

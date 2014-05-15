@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          autoload/ctrlp/changes.vim
-" Description:   Change list extension
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 autoload/ctrlp/changes.vim
+" Description:	 Change list extension
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 
 " Init {{{1

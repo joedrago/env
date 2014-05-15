@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          autoload/ctrlp/undo.vim
-" Description:   Undo extension
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 autoload/ctrlp/undo.vim
+" Description:	 Undo extension
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 
 " Init {{{1

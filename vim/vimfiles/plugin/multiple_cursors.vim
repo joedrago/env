@@ -1,7 +1,7 @@
 "===============================================================================
 " File: multiple_cursors.vim
 " Author: Terry Ma
-" Description: Emulate Sublime Text's multi selection feature 
+" Description: Emulate Sublime Text's multi selection feature
 " Potential Features:
 " - Create a blinking cursor effect? Good place to do it would be instead of
 "   waiting for user input, cycle through the highlight
@@ -20,7 +20,7 @@ function! s:init_settings(settings)
       let sub = '"%s"'
     endif
     let fmt = printf("let g:multi_cursor_%%s=get(g:, 'multi_cursor_%%s', %s)",
-          \ sub)
+	  \ sub)
     exec printf(fmt, key, key, value)
   endfor
 endfunction
@@ -53,13 +53,13 @@ endif
 " External mappings
 if exists('g:multi_cursor_start_key')
   exec 'nnoremap <silent> '.g:multi_cursor_start_key.
-        \' :call multiple_cursors#new("n")<CR>'
+	\' :call multiple_cursors#new("n")<CR>'
   exec 'xnoremap <silent> '.g:multi_cursor_start_key.
-        \' :<C-u>call multiple_cursors#new("v")<CR>'
+	\' :<C-u>call multiple_cursors#new("v")<CR>'
 endif
 
 " Commands
-command! -nargs=1 -range=% MultipleCursorsFind 
+command! -nargs=1 -range=% MultipleCursorsFind
       \ call multiple_cursors#find(<line1>, <line2>, <q-args>)
 
 let &cpo = s:save_cpo

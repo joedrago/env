@@ -1,7 +1,7 @@
 " =============================================================================
-" File:          autoload/ctrlp/quickfix.vim
-" Description:   Quickfix extension
-" Author:        Kien Nguyen <github.com/kien>
+" File: 	 autoload/ctrlp/quickfix.vim
+" Description:	 Quickfix extension
+" Author:	 Kien Nguyen <github.com/kien>
 " =============================================================================
 
 " Init {{{1

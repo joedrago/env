@@ -1,6 +1,6 @@
 " Author: Eric Van Dewoestine <ervandew@gmail.com>
-"         Original concept and versions up to 0.32 written by
-"         Gergely Kontra <kgergely@mcl.hu>
+"	  Original concept and versions up to 0.32 written by
+"	  Gergely Kontra <kgergely@mcl.hu>
 " Version: 2.1
 " GetLatestVimScripts: 1643 1 :AutoInstall: supertab.vim
 "
@@ -144,8 +144,8 @@ set cpo&vim
     \ "Hit <CR> or CTRL-] on the completion type you wish to switch to.\n" .
     \ "Use :help ins-completion for more information.\n" .
     \ "\n" .
-    \ "|<c-n>|      - Keywords in 'complete' searching down.\n" .
-    \ "|<c-p>|      - Keywords in 'complete' searching up (SuperTab default).\n" .
+    \ "|<c-n>|	    - Keywords in 'complete' searching down.\n" .
+    \ "|<c-p>|	    - Keywords in 'complete' searching up (SuperTab default).\n" .
     \ "|<c-x><c-l>| - Whole lines.\n" .
     \ "|<c-x><c-n>| - Keywords in current file.\n" .
     \ "|<c-x><c-k>| - Keywords in 'dictionary'.\n" .
@@ -208,9 +208,9 @@ function! SuperTabAlternateCompletion(type) " {{{
   " instead, you have to use \<lt> to prevent vim from expanding the key
   " when creating the mapping.
   "    gvim:
-  "      imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-p>")<cr>
+  "	 imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-p>")<cr>
   "    console:
-  "      imap <nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-p>")<cr>
+  "	 imap <nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-p>")<cr>
 
   call SuperTabSetCompletionType(a:type)
   " end any current completion before attempting to start the new one.
@@ -368,8 +368,8 @@ function! SuperTab(command) " {{{
       return s:Tab()
     endif
     return (
-        \ g:SuperTabMappingForward ==? '<tab>' ||
-        \ g:SuperTabMappingBackward ==? '<tab>'
+	\ g:SuperTabMappingForward ==? '<tab>' ||
+	\ g:SuperTabMappingBackward ==? '<tab>'
       \ ) ? "\<tab>" : ''
   endif
 
@@ -413,7 +413,7 @@ function! SuperTab(command) " {{{
     elseif pumvisible() && !b:complReset
       let type = b:complType == 'context' ? b:complTypeContext : b:complType
       if a:command == 'n'
-        return type == "\<c-p>" || type == "\<c-x>\<c-p>" ? "\<c-p>" : "\<c-n>"
+	return type == "\<c-p>" || type == "\<c-x>\<c-p>" ? "\<c-p>" : "\<c-n>"
       endif
       return type == "\<c-p>" || type == "\<c-x>\<c-p>" ? "\<c-n>" : "\<c-p>"
     endif
@@ -422,8 +422,8 @@ function! SuperTab(command) " {{{
     if b:complType == 'context'
       let complType = s:ContextCompletion()
       if complType == ''
-        exec "let complType = \"" .
-          \ escape(g:SuperTabContextDefaultCompletionType, '<') . "\""
+	exec "let complType = \"" .
+	  \ escape(g:SuperTabContextDefaultCompletionType, '<') . "\""
       endif
       let b:complTypeContext = complType
 
@@ -437,9 +437,9 @@ function! SuperTab(command) " {{{
     " switch <c-x><c-p> / <c-x><c-n> completion in <c-p> mode
     if a:command == 'p'
       if complType == "\<c-x>\<c-p>"
-        let complType = "\<c-x>\<c-n>"
+	let complType = "\<c-x>\<c-n>"
       elseif complType == "\<c-x>\<c-n>"
-        let complType = "\<c-x>\<c-p>"
+	let complType = "\<c-x>\<c-p>"
       endif
     endif
 
@@ -457,12 +457,12 @@ function! SuperTab(command) " {{{
       " not an accurate condition for everyone, but better than sending <c-e>
       " at the wrong time.
       if pumvisible()
-        return "\<c-e>" . complType
+	return "\<c-e>" . complType
       endif
     endif
 
     if g:SuperTabUndoBreak && !pumvisible()
-        return "\<c-g>u" . complType
+	return "\<c-g>u" . complType
     endif
 
     return complType
@@ -528,7 +528,7 @@ function! s:WillComplete(...) " {{{
     " the option was provided as a list of patterns
     for pattern in b:SuperTabNoCompleteAfter
       if pre =~ pattern . '$'
-        return 0
+	return 0
       endif
     endfor
   elseif complAfterType == 2
@@ -544,7 +544,7 @@ function! s:WillComplete(...) " {{{
     " a list of patterns
     for pattern in b:SuperTabNoCompleteBefore
       if post =~ '^' . pattern
-        return 0
+	return 0
       endif
     endfor
   elseif complBeforeType == 2
@@ -587,8 +587,8 @@ function! s:EnableNoCompleteAfterReset() " {{{
     let b:capturing = 1
     let b:capturing_start = col('.')
     let b:captured = {
-        \ '<bs>': maparg('<bs>', 'i'),
-        \ '<c-h>': maparg('<c-h>', 'i'),
+	\ '<bs>': maparg('<bs>', 'i'),
+	\ '<c-h>': maparg('<c-h>', 'i'),
       \ }
     imap <buffer> <bs> <c-r>=<SID>CompletionReset("\<lt>bs>")<cr>
     imap <buffer> <c-h> <c-r>=<SID>CompletionReset("\<lt>c-h>")<cr>
@@ -619,8 +619,8 @@ function! s:CaptureKeyPresses() " {{{
     " save any previous mappings
     " TODO: capture additional info provided by vim 7.3.032 and up.
     let b:captured = {
-        \ '<bs>': maparg('<bs>', 'i'),
-        \ '<c-h>': maparg('<c-h>', 'i'),
+	\ '<bs>': maparg('<bs>', 'i'),
+	\ '<c-h>': maparg('<c-h>', 'i'),
       \ }
     " TODO: use &keyword to get an accurate list of chars to map
     for c in split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_', '.\zs')
@@ -650,16 +650,16 @@ function! s:ClosePreview() " {{{
     let preview = 0
     for bufnum in tabpagebuflist()
       if getwinvar(bufwinnr(bufnum), '&previewwindow')
-        let preview = 1
-        break
+	let preview = 1
+	break
       endif
     endfor
     if preview
       pclose
       try
-        doautocmd <nomodeline> supertab_preview_closed User <supertab>
+	doautocmd <nomodeline> supertab_preview_closed User <supertab>
       catch /E216/
-        " ignore: no autocmds defined
+	" ignore: no autocmds defined
       endtry
     endif
   endif
@@ -676,13 +676,13 @@ function! s:ReleaseKeyPresses() " {{{
     " restore any previous mappings
     for [key, rhs] in items(b:captured)
       if rhs != ''
-        let args = substitute(rhs, '.*\(".\{-}"\).*', '\1', '')
-        if args != rhs
-          let args = substitute(args, '<', '<lt>', 'g')
-          let expr = substitute(rhs, '\(.*\)".\{-}"\(.*\)', '\1%s\2', '')
-          let rhs = printf(expr, args)
-        endif
-        exec printf("imap <silent> <buffer> %s %s", key, rhs)
+	let args = substitute(rhs, '.*\(".\{-}"\).*', '\1', '')
+	if args != rhs
+	  let args = substitute(args, '<', '<lt>', 'g')
+	  let expr = substitute(rhs, '\(.*\)".\{-}"\(.*\)', '\1%s\2', '')
+	  let rhs = printf(expr, args)
+	endif
+	exec printf("imap <silent> <buffer> %s %s", key, rhs)
       endif
     endfor
     unlet b:captured
@@ -719,7 +719,7 @@ function! s:ContextCompletion() " {{{
       let complType = Context()
       unlet Context
       if type(complType) == 1 && complType != ''
-        return complType
+	return complType
       endif
     catch /E700/
       echohl Error
@@ -741,8 +741,8 @@ function! s:ContextDiscover() " {{{
       let type = substitute(pair, '.*:\(.*\)', '\1', '')
       exec 'let value = ' . var
       if value !~ '^\s*$' && value != '0'
-        exec "let complType = \"" . escape(type, '<') . "\""
-        return complType
+	exec "let complType = \"" . escape(type, '<') . "\""
+	return complType
       endif
     endfor
   endif
@@ -763,15 +763,15 @@ function! s:ContextText() " {{{
     elseif curline =~ '.*\(\w\|[\])]\)\(\.\|>\?::\|->\)\w*\%' . cnum . 'c' &&
       \ synname !~ '\(String\|Comment\)'
       let omniPrecedence = exists('g:SuperTabContextTextOmniPrecedence') ?
-        \ g:SuperTabContextTextOmniPrecedence : ['&completefunc', '&omnifunc']
+	\ g:SuperTabContextTextOmniPrecedence : ['&completefunc', '&omnifunc']
 
       for omniFunc in omniPrecedence
-        if omniFunc !~ '^&'
-          let omniFunc = '&' . omniFunc
-        endif
-        if getbufvar(bufnr('%'), omniFunc) != ''
-          return omniFunc == '&omnifunc' ? "\<c-x>\<c-o>" : "\<c-x>\<c-u>"
-        endif
+	if omniFunc !~ '^&'
+	  let omniFunc = '&' . omniFunc
+	endif
+	if getbufvar(bufnr('%'), omniFunc) != ''
+	  return omniFunc == '&omnifunc' ? "\<c-x>\<c-o>" : "\<c-x>\<c-u>"
+	endif
       endfor
     endif
   endif
@@ -802,7 +802,7 @@ function! SuperTabCodeComplete(findstart, base) " {{{
 
   if len(b:SuperTabChain) != 2
     echoe 'Completion chain can only be used with 1 completion function ' .
-        \ 'and 1 fallback completion key binding.'
+	\ 'and 1 fallback completion key binding.'
     return -2
   endif
 
@@ -890,43 +890,43 @@ endfunction " }}}
     function! s:SelectCompletion(cr)
       " selecting a completion
       if pumvisible()
-        " ugly hack to let other <cr> mappings for other plugins cooperate
-        " with supertab
-        let b:supertab_pumwasvisible = 1
+	" ugly hack to let other <cr> mappings for other plugins cooperate
+	" with supertab
+	let b:supertab_pumwasvisible = 1
 
-        " close the preview window if configured to do so
-        if &completeopt =~ 'preview' && g:SuperTabClosePreviewOnPopupClose
-          if !exists('b:supertab_close_preview')
-            let b:supertab_close_preview = !s:IsPreviewOpen()
-          endif
-          call s:ClosePreview()
-        endif
+	" close the preview window if configured to do so
+	if &completeopt =~ 'preview' && g:SuperTabClosePreviewOnPopupClose
+	  if !exists('b:supertab_close_preview')
+	    let b:supertab_close_preview = !s:IsPreviewOpen()
+	  endif
+	  call s:ClosePreview()
+	endif
 
-        return "\<c-y>"
+	return "\<c-y>"
       endif
 
       " only needed when chained with other mappings and one of them will
       " issue a <cr>.
       if exists('b:supertab_pumwasvisible') && !a:cr
-        unlet b:supertab_pumwasvisible
-        return ''
+	unlet b:supertab_pumwasvisible
+	return ''
       endif
 
       " not so pleasant hack to keep <cr> working for abbreviations
       let word = substitute(getline('.'), '^.*\s\+\(.*\%' . col('.') . 'c\).*', '\1', '')
       let result = maparg(word, 'i', 1)
       if result != ''
-        let bs = ""
-        let i = 0
-        while i < len(word)
-          let bs .= "\<bs>"
-          let i += 1
-        endwhile
-        " escape keys
-        let result = substitute(result, '\(<[a-zA-Z][-a-zA-Z]*>\)', '\\\1', 'g')
-        " ensure escaped keys are properly recognized
-        exec 'let result = "' . escape(result, '"') . '"'
-        return bs . result . (a:cr ? "\<cr>" : "")
+	let bs = ""
+	let i = 0
+	while i < len(word)
+	  let bs .= "\<bs>"
+	  let i += 1
+	endwhile
+	" escape keys
+	let result = substitute(result, '\(<[a-zA-Z][-a-zA-Z]*>\)', '\\\1', 'g')
+	" ensure escaped keys are properly recognized
+	exec 'let result = "' . escape(result, '"') . '"'
+	return bs . result . (a:cr ? "\<cr>" : "")
       endif
 
       " only return a cr if nothing else is mapped to it since we don't want
@@ -966,15 +966,15 @@ function! TestSuperTabCodeComplete(findstart, base) " {{{
     let completions = []
     if getline('.') =~ 'TestC'
       call add(completions, {
-          \ 'word': 'test1(',
-          \ 'kind': 'm',
-          \ 'menu': 'test1(...)',
-        \ })
+	  \ 'word': 'test1(',
+	  \ 'kind': 'm',
+	  \ 'menu': 'test1(...)',
+	\ })
       call add(completions, {
-          \ 'word': 'testing2(',
-          \ 'kind': 'm',
-          \ 'menu': 'testing2(...)',
-        \ })
+	  \ 'word': 'testing2(',
+	  \ 'kind': 'm',
+	  \ 'menu': 'testing2(...)',
+	\ })
     endif
 
     return completions

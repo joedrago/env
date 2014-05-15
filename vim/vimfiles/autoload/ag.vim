@@ -78,7 +78,7 @@ function! ag#Ag(cmd, args)
 endfunction
 
 function! ag#AgFromSearch(cmd, args)
-  let search =  getreg('/')
+  let search =	getreg('/')
   " translate vim regular expression to perl regular expression.
   let search = substitute(search,'\(\\<\|\\>\)','\\b','g')
   call ag#Ag(a:cmd, '"' .  search .'" '. a:args)
@@ -87,10 +87,10 @@ endfunction
 function! ag#GetDocLocations()
     let dp = ''
     for p in split(&rtp,',')
-        let p = p.'/doc/'
-        if isdirectory(p)
-            let dp = p.'*.txt '.dp
-        endif
+	let p = p.'/doc/'
+	if isdirectory(p)
+	    let dp = p.'*.txt '.dp
+	endif
     endfor
     return dp
 endfunction
