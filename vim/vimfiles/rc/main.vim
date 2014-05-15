@@ -34,9 +34,9 @@ set mouse=a
 set clipboard=unnamed
 
 " Color formatting
-colorscheme sunburst
+colorscheme koehler
 if has("gui_running")
-    colorscheme koehler
+colorscheme sunburst
 endif
 syntax enable
 au BufWinEnter * let w:m1=matchadd('Error', '\t', -1)
