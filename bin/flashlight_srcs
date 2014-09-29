@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-sub ALLOWED_EXTENSIONS() { qw/txt cmake scons py pl js html hpp h cpp c def ps vs sh pm xml ek ekd y pl re coffee/ }
+sub ALLOWED_EXTENSIONS() { qw/txt cmake scons py pl js html hpp h cpp c def ps vs sh pm xml ek ekd y pl re coffee litcoffee/ }
 sub ALLOWED_FILENAMES() { qw/Makefile/ }
 
 use strict;

@@ -1,3 +1,7 @@
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
 " vi is dumb. Backspace should work across newlines and before the insertion mark
 set nocompatible
 set bs=2
@@ -5,8 +9,15 @@ set bs=2
 " Tabs are dumb. ts=8 + expandtab allows smartindent to work properly without tabs
 set sw=4
 set sts=4
-set ts=8
+set ts=4
 set expandtab
+
+" disable indent lines
+let g:indentLine_char = ' '
+
+" change indent and enable indent lines for Coffeescript
+autocmd BufRead,BufNewFile *.coffee,*.litcoffee setlocal sw=2 sts=2 ts=2
+autocmd BufRead,BufNewFile *.coffee,*.litcoffee let g:indentLine_char = '|'
 
 " autoindent and smartindent, very convenient
 set ai
@@ -33,14 +44,27 @@ set mouse=a
 " Change the default buffer to the clipboard
 set clipboard=unnamed
 
+" Automatically re-read file on disk when changed, and disable editing of readonly files
+set autoread
+autocmd BufReadPost * if &readonly | setlocal nomodifiable | else | setlocal modifiable | endif
+
 " Color formatting
 colorscheme koehler
 if has("gui_running")
 colorscheme sunburst
 endif
 syntax enable
-au BufWinEnter * let w:m1=matchadd('Error', '\t', -1)
-au BufWinEnter * let w:m2=matchadd('Error', '[\t ]\+$', -1)
+
+set guioptions+=LlRrb
+set guioptions-=LlRrb
+set guioptions+=mT
+set guioptions-=mT
+set guifont=Liberation_Mono:h10
+
+hi TabChar	guifg=#fd5ff1 guibg=#361d36
+hi TabChar	ctermfg=207   ctermbg=238
+au BufWinEnter * let w:m1=matchadd('TabChar', '\t', -1)
+au BufWinEnter * let w:m2=matchadd('TabChar', '[\t ]\+$', -1)
 hi WarningMsg guibg=#222222
 hi Search guibg=DarkGreen
 
@@ -54,12 +78,15 @@ function! Ack(args)
 endfunction
 command! -nargs=* -complete=file Ack call Ack(<q-args>)
 
+" Force a reasonable text width on files for gq purposes
+set textwidth=100
 autocmd FileType rst setlocal textwidth=80
+autocmd BufEnter,BufNew *.ekd setlocal textwidth=80
+
 autocmd FileType make setlocal noexpandtab
 autocmd BufEnter fabfile setlocal ft=python
 autocmd BufEnter wscript setlocal ft=python
 autocmd BufRead */cmake/* setlocal ft=cmake
-autocmd BufEnter,BufNew *.ekd setlocal textwidth=80
 
 " keybinds
 map <f1> :bp<cr>
@@ -76,18 +103,11 @@ map <f12> :bd<cr>
 au FileType qf wincmd J
 nmap <Leader>c :ccl<CR>
 
-set makeprg=smake
+" set makeprg=smake
 set tags=tags;/
 
 au BufRead quickfix setlocal nobuflisted wrap number
-
 set wildignore+=*.o,*.obj,.svn,*.elf,*.exe,*boost*,*build*
-
-set guioptions+=LlRrb
-set guioptions-=LlRrb
-set guioptions+=mT
-set guioptions-=mT
-set guifont=Liberation_Mono:h10
 
 let g:buftabs_only_basename = 1
 let g:buftabs_in_statusline = 1
@@ -113,17 +133,13 @@ filetype off
 filetype on
 
 " astyle settings - TODO: dont hardcode options path
-autocmd BufNewFile,BufRead * setlocal formatprg=
-autocmd BufNewFile,BufRead *.h,*.c,*.cpp execute 'setlocal formatprg=astyle\ --options=' . expand('<sfile>:p:h') . '/../../../conf/astyle/home.txt'
-autocmd BufNewFile,BufRead *.go execute 'setlocal formatprg=gofmt'
+" autocmd BufNewFile,BufRead * setlocal formatprg=
+" autocmd BufNewFile,BufRead *.h,*.c,*.cpp execute 'setlocal formatprg=astyle\ --options=' . expand('<sfile>:p:h') . '/../../../conf/astyle/home.txt'
+" autocmd BufNewFile,BufRead *.go execute 'setlocal formatprg=gofmt'
 
 runtime rc/ctrlp.vim
 runtime rc/comments.vim
 runtime rc/codetemplates.vim
-runtime rc/nova.vim
-if has('win32')
-    autocmd BufNewFile,BufRead c:/work/metroid/*.cpp,c:/work/metroid/*.c,c:/work/metroid/*.h runtime rc/metroid.vim
-endif
 
 let g:session_autosave = 'yes'
 let g:session_autoload = 'yes'
