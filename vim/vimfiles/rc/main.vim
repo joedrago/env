@@ -79,7 +79,7 @@ endfunction
 command! -nargs=* -complete=file Ack call Ack(<q-args>)
 
 " Force a reasonable text width on files for gq purposes
-set textwidth=100
+" set textwidth=100
 autocmd FileType rst setlocal textwidth=80
 autocmd BufEnter,BufNew *.ekd setlocal textwidth=80
 
