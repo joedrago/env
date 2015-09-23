@@ -1,0 +1,133 @@
+{
+    "theme" : "vim",
+    "hotkey" : "win|o",
+    "lists" : [
+        {
+            "name" : "Nova",
+            "lists": [
+                {
+                    "name" : "Nova",
+                    "type" : "files",
+                    "path" : "C:\\work\\nova",
+                    "extensions" : ["txt","cmake","scons","py","pl","js","html","hpp","h","cpp","c","def"]
+                }
+            ]
+        },
+        {
+            "name" : "Web",
+            "lists": [
+                {
+                    "type" : "files",
+                    "path" : "C:\\work\\webroot",
+                    "extensions" : ["html","htm","js","txt"]
+                }
+            ]
+        }
+    ],
+    "actions" : [
+        {
+            "name" : "Open",
+            "image" : "open",
+            "exec" : "\"!*!\""
+        },
+        {
+            "name" : "Explore",
+            "image" : "open",
+            "exec" : "explorer /select,\"!*!\""
+        },
+        {
+            "name" : "Vim",
+            "image" : "vim",
+            "exec" : "C:\\vim\\vim74\\gvim.exe --remote-silent \"!*!\""
+        }
+    ],
+    "rules" : [
+        {
+            "action" : "Vim"
+        },
+        {
+            "action" : "Explore"
+        },
+        {
+            "action" : "Open"
+        }
+    ],
+    "binds" : [
+        {
+            "key" : "c",
+            "command" : "clipboardCopy"
+        },
+        {
+            "key" : "f1",
+            "command" : "action Explore"
+        },
+        {
+            "key" : "f3",
+            "command" : "action Vim"
+        },
+        {
+            "key" : "v",
+            "command" : "action Vim"
+        },
+        {
+            "key" : "e",
+            "command" : "action Explore"
+        },
+        {
+            "key" : "f5",
+            "command" : "reload"
+        },
+        {
+            "key" : "j",
+            "command" : "viewNext"
+        },
+        {
+            "key" : "k",
+            "command" : "viewPrev"
+        },
+        {
+            "key" : "down",
+            "command" : "viewNext"
+        },
+        {
+            "key" : "up",
+            "command" : "viewPrev"
+        },
+        {
+            "key" : "left",
+            "command" : "actionPrev"
+        },
+        {
+            "key" : "right",
+            "command" : "actionNext"
+        },
+        {
+            "key" : "a",
+            "command" : "clear"
+        },
+        {
+            "key" : "l",
+            "command" : "clear"
+        },
+        {
+            "key" : "p",
+            "command" : "undoClear"
+        },
+        {
+            "key" : "pageUp",
+            "command" : "viewPageUp"
+        },
+        {
+            "key" : "pageDown",
+            "command" : "viewPageDown"
+        },
+        {
+            "key" : "home",
+            "command" : "viewTop"
+        },
+        {
+            "key" : "end",
+            "command" : "viewBottom"
+        }
+    ]
+}
