@@ -2,6 +2,8 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+set encoding=utf-8
+
 " vi is dumb. Backspace should work across newlines and before the insertion mark
 set nocompatible
 set bs=2
@@ -98,6 +100,7 @@ map <f8> :ccl<CR>
 map <f9> :silent !p4 edit %<CR>
 map <f10> :silent !cmd /c start %<CR>
 map <f12> :bd<cr>
+map <c-p> :Files<cr>
 
 " Display error window on bottom
 au FileType qf wincmd J
@@ -140,6 +143,7 @@ filetype on
 runtime rc/ctrlp.vim
 runtime rc/comments.vim
 runtime rc/codetemplates.vim
+runtime rc/ag.vim
 
-let g:session_autosave = 'yes'
-let g:session_autoload = 'yes'
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
