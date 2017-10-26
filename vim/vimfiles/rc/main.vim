@@ -53,7 +53,7 @@ autocmd BufReadPost * if &readonly | setlocal nomodifiable | else | setlocal mod
 " Color formatting
 colorscheme koehler
 if has("gui_running")
-colorscheme sunburst
+colorscheme firecode
 endif
 syntax enable
 
