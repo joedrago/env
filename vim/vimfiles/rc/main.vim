@@ -147,3 +147,11 @@ runtime rc/ag.vim
 
 let g:session_autosave = 'no'
 let g:session_autoload = 'no'
+
+augroup highlight_funcs
+  autocmd!
+  autocmd Syntax c syn match Function "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2 
+  autocmd Syntax c syn match Function "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1 
+  autocmd Syntax cpp syn match Function "\<[a-zA-Z_][a-zA-Z_0-9]*\>[^()]*)("me=e-2 
+  autocmd Syntax cpp syn match Function "\<[a-zA-Z_][a-zA-Z_0-9]*\>\s*("me=e-1 
+augroup end
