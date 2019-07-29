@@ -2,8 +2,10 @@
     "actions": [
         { "key": "alt win up", "rect": [-7, 0, 1445, 996] },
         { "key": "alt win right", "rect": [1425, 0, 2020, 1408] },
-        { "key": "alt win down", "rect": [915, 990, 523, 416] },
-        { "key": "alt win left", "rect": [-7, 990, 934, 416] },
+        { "key": "alt win left", "rect": [-7, 990, 710, 416] },
+
+        { "key": "ctrl alt win down", "rect": [915, 990, 523, 416] },
+        { "key": "alt win down", "rect": [691, 990, 747, 416] },
 
         { "key": "ctrl alt win left", "rect": [1425, 0, 1010, 1408] },
         { "key": "ctrl alt win right", "rect": [2435, 0, 1010, 1408] }

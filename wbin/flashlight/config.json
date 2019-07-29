@@ -1,6 +1,6 @@
 {
     "theme" : "vim",
-    "hotkey" : "win|o",
+    "hotkey" : "shift|win|o",
     "lists" : [
         {
             "name" : "Nova",
@@ -8,7 +8,7 @@
                 {
                     "name" : "Nova",
                     "type" : "files",
-                    "path" : "C:\\work\\nova",
+                    "path" : "C:\\work\\nova_19.1",
                     "extensions" : ["txt","cmake","scons","py","pl","js","html","hpp","h","cpp","c","def"]
                 }
             ]

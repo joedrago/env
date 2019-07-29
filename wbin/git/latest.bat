@@ -22,12 +22,15 @@ echo [0;33mRebasing...[0m
 git pull --rebase --stat
 if %errorlevel% neq 0 goto error
 echo [0;33mUpdating submodules...[0m
-git submodule update --init
+git submodule update --init --recursive
 if %errorlevel% neq 0 goto error
 pushd nrdp
 echo [0;33mChecking out branch [0;35m%CURRENT_BRANCH%[0;33m in nrdp...[0m
 git checkout %CURRENT_BRANCH%
 git pull --rebase --stat
+if %errorlevel% neq 0 goto error
+echo [0;33mUpdating nrdp submodules...[0m
+git submodule update --init --recursive
 if %errorlevel% neq 0 goto error
 popd
 
@@ -39,13 +42,13 @@ goto skiptools
 pushd c:\work\nova_tools
 echo [0;33mUpdating nova_tools...[0m
 git pull --rebase --stat
-git submodule update --init
+git submodule update --init --recursive
 popd
 
 pushd c:\work\nova_toolchain
 echo [0;33mUpdating nova_toolchain...[0m
 git pull --rebase --stat
-git submodule update --init
+git submodule update --init --recursive
 popd
 
 goto success
