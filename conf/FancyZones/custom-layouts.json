@@ -1,0 +1,40 @@
+{
+  "custom-layouts": [
+    {
+      "uuid": "{F498C95D-1080-4303-927B-826BAE9B5047}",
+      "name": "There",
+      "type": "canvas",
+      "info": {
+        "ref-width": 3440,
+        "ref-height": 1400,
+        "zones": [
+          {
+            "X": 1,
+            "Y": 0,
+            "width": 1430,
+            "height": 989
+          },
+          {
+            "X": 1431,
+            "Y": 0,
+            "width": 2009,
+            "height": 1400
+          },
+          {
+            "X": 1,
+            "Y": 989,
+            "width": 918,
+            "height": 411
+          },
+          {
+            "X": 919,
+            "Y": 989,
+            "width": 512,
+            "height": 411
+          }
+        ],
+        "sensitivity-radius": 20
+      }
+    }
+  ]
+}
